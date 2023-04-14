@@ -14,13 +14,11 @@ import de.congrace.exp4j.ExpressionBuilder;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "ifsuldeminas.mch.calc";
-    private Button buttonIgual;
-    private TextView textViewResultado;
-    private TextView textViewUltimaExpressao;
+    private TextView textViewUltimaExpressao, textViewResultado;
 
     private Button buttonUmID, buttonDoisID, buttonTresID, buttonQuatroID, buttonCincoID,
             buttonSeisID, buttonSeteID, buttonOitoID, buttonNoveID, buttonZeroID, buttonVirgulaID, buttonSomaID, buttonSubtracaoID,
-            buttonPorcentoID, buttonMultiplicacaoID, buttonDivisaoID, buttonResetID, buttonDeleteID;
+            buttonPorcentoID, buttonMultiplicacaoID, buttonDivisaoID, buttonResetID, buttonDeleteID, buttonIgual;
 
     private String expressao = "";
     private Double resultado = 0.0;
@@ -98,41 +96,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPorcentoID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewUltimaExpressao.append("%");
+                // Verifique se há um resultado anterior
+                if (resultado != 0) {
+                    // Use o resultado anterior como o primeiro operando
+                    textViewUltimaExpressao.setText(String.valueOf(resultado) + "%");
+                } else {
+                    // Caso contrário, use a última expressão completa como a expressão atual
+                    textViewUltimaExpressao.append("%");
+                }
             }
         });
 
         buttonSomaID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewUltimaExpressao.append("+");
+                // Verifique se há um resultado anterior
+                if (resultado != 0) {
+                    // Use o resultado anterior como o primeiro operando
+                    textViewUltimaExpressao.setText(String.valueOf(resultado) + "+");
+                } else {
+                    // Caso contrário, use a última expressão completa como a expressão atual
+                    textViewUltimaExpressao.append("+");
+                }
             }
         });
 
         buttonMultiplicacaoID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewUltimaExpressao.append("*");
+                // Verifique se há um resultado anterior
+                if (resultado != 0) {
+                    // Use o resultado anterior como o primeiro operando
+                    textViewUltimaExpressao.setText(String.valueOf(resultado) + "*");
+                } else {
+                    // Caso contrário, use a última expressão completa como a expressão atual
+                    textViewUltimaExpressao.append("*");
+                }
             }
         });
 
         buttonSubtracaoID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewUltimaExpressao.append("-");
+                // Verifique se há um resultado anterior
+                if (resultado != 0) {
+                    // Use o resultado anterior como o primeiro operando
+                    textViewUltimaExpressao.setText(String.valueOf(resultado) + "-");
+                } else {
+                    // Caso contrário, use a última expressão completa como a expressão atual
+                    textViewUltimaExpressao.append("-");
+                }
             }
         });
 
         buttonDivisaoID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewUltimaExpressao.append("/");
+                // Verifique se há um resultado anterior
+                if (resultado != 0) {
+                    // Use o resultado anterior como o primeiro operando
+                    textViewUltimaExpressao.setText(String.valueOf(resultado) + "/");
+                } else {
+                    // Caso contrário, use a última expressão completa como a expressão atual
+                    textViewUltimaExpressao.append("/");
+                }
             }
         });
 
         buttonResetID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                resultado= 0.0;
                 textViewUltimaExpressao.setText("");
                 textViewResultado.setText("");
             }
@@ -141,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonDeleteID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                resultado = 0.0;
                 String resultado = textViewUltimaExpressao.getText().toString();
                 if (resultado.length() > 0) {
                     resultado = resultado.substring(0, resultado.length() - 1);
@@ -236,4 +271,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+
 }
